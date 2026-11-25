@@ -1,0 +1,560 @@
+/* ==========================================================================
+   honey — shared theme
+   โทน: ขาว / ครีม / เบจเข้ม  ·  เส้นบาง  ·  โปร่ง เว้นระยะเยอะ
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Serif+Thai:wght@300;400;500;600&display=swap");
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* สี */
+  --white:       #ffffff;
+  --cream:       #fbf7ef;   /* พื้นหลังหลัก */
+  --sand:        #f2eadb;   /* พื้นหลังส่วนที่สอง */
+  --line:        #d9ccb4;   /* เส้นขอบบาง */
+  --beige-dark:  #8a6f4e;   /* เบจเข้ม: ลิงก์ ไอคอน */
+  --ink:         #4a3b2a;   /* ตัวอักษรหลัก (น้ำตาลเข้มนุ่ม) */
+  --ink-soft:    #75664f;   /* ตัวอักษรรอง */
+  --honey:       #d6b06a;   /* สีเน้นอ่อนๆ ใช้น้อยๆ */
+
+  /* ฟอนต์ */
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", Georgia, "Times New Roman", serif;
+  --font-heading: "Noto Serif Thai", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Noto Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ขนาดตัวอักษร */
+  --text-sm:  0.875rem;
+  --text-base: 1rem;
+  --text-lg:  1.125rem;
+  --h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --h1: clamp(2.5rem, 1.8rem + 3.4vw, 4.5rem);
+
+  /* ระยะห่าง */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+  /* รูปทรง */
+  --radius:      14px;
+  --radius-pill: 999px;
+  --border:      1px solid var(--line);
+
+  --container: 1080px;
+  --measure:   34rem;       /* ความกว้างบรรทัดอ่านสบาย */
+  --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset / Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 300;
+  line-height: 1.9;          /* ภาษาไทยต้องการบรรทัดโปร่งกว่าปกติ */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg { display: block; max-width: 100%; height: auto; }
+
+a {
+  color: var(--beige-dark);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: color 0.25s var(--ease);
+}
+a:hover { color: var(--ink); }
+
+::selection { background: var(--honey); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--beige-dark);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--h1);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h2 { font-size: var(--h2); }
+h3 { font-size: var(--h3); }
+
+p {
+  margin: 0 0 var(--space-3);
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 2;
+  color: var(--ink);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.small { font-size: var(--text-sm); }
+.muted { color: var(--ink-soft); }
+
+/* --------------------------------------------------------------------------
+   4. Layout
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(100% - 3rem, var(--container));
+  margin-inline: auto;
+}
+
+.section { padding-block: var(--section-y); }
+.section--sand  { background: var(--sand); }
+.section--white { background: var(--white); }
+
+.section__head {
+  margin-bottom: var(--space-5);
+}
+.section__head p { margin-inline: auto; }
+
+.text-center { text-align: center; }
+.text-center p { margin-inline: auto; }
+
+.stack > * + * { margin-top: var(--space-3); }
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.divider {
+  width: 3rem;
+  height: 0;
+  margin: var(--space-4) auto;
+  border: 0;
+  border-top: 1px solid var(--honey);
+}
+
+/* --------------------------------------------------------------------------
+   5. Header / Footer
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(251, 247, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 4.5rem;
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav a {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding-block: 0.25rem;
+  border-bottom: 1px solid transparent;
+}
+.nav a:hover { border-bottom-color: var(--beige-dark); }
+
+.site-footer {
+  padding-block: var(--space-5);
+  background: var(--sand);
+  border-top: var(--border);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+.site-footer p { margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   6. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: clamp(5rem, 3rem + 10vw, 11rem);
+  text-align: center;
+}
+.hero p { margin-inline: auto; }
+.hero .btn { margin-top: var(--space-3); }
+
+/* --------------------------------------------------------------------------
+   7. Buttons  (เส้นบาง สีเข้มนุ่มตา)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.7rem 2.25rem;
+  font: 400 var(--text-base)/1.4 var(--font-body);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+              border-color 0.3s var(--ease);
+}
+.btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn--solid:hover {
+  background: var(--beige-dark);
+  border-color: var(--beige-dark);
+}
+
+.btn--block { display: flex; width: 100%; }
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. Product card
+   -------------------------------------------------------------------------- */
+.product {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.product__media {
+  aspect-ratio: 4 / 3;
+  background: var(--sand);
+  overflow: hidden;
+}
+.product__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+.product__name  { margin: 0; font-size: var(--h3); }
+.product__size  { margin: 0; font-size: var(--text-sm); color: var(--beige-dark); }
+.product__desc  { margin: var(--space-1) 0 var(--space-3); font-size: 0.95rem; }
+.product__price {
+  margin: auto 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.product__price small {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   9. Forms  (ฟอร์มสั่งซื้อ)
+   -------------------------------------------------------------------------- */
+.form {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 34rem;
+  margin-inline: auto;
+}
+.field { display: grid; gap: 0.4rem; }
+
+.field label {
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  font: 300 var(--text-base)/1.6 var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.textarea { min-height: 7rem; resize: vertical; }
+
+.input::placeholder,
+.textarea::placeholder { color: #a59880; }
+
+.input:hover,
+.textarea:hover,
+.select:hover { border-color: var(--beige-dark); }
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--beige-dark);
+  box-shadow: 0 0 0 3px rgba(214, 176, 106, 0.3);
+}
+
+.form__message {
+  min-height: 1.5rem;
+  margin: 0;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--beige-dark);
+}
+.form__message--error { color: #9a4a3a; }
+
+/* ตะกร้า / สรุปรายการ */
+.summary {
+  padding: var(--space-4);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+.summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block: 0.75rem;
+  border-bottom: 1px dashed var(--line);
+}
+.summary__row:last-child { border-bottom: 0; }
+.summary__total {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split   { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+@media (max-width: 640px) {
+  :root { --space-4: 2rem; --space-5: 3rem; }
+
+  body { line-height: 1.85; }
+
+  .container { width: min(100% - 2.5rem, var(--container)); }
+
+  .grid--2,
+  .grid--3 { grid-template-columns: 1fr; }
+
+  .site-header__inner { min-height: 4rem; }
+  .nav { gap: var(--space-3); }
+
+  .btn { width: 100%; }          /* ปุ่มเต็มความกว้างบนมือถือ นิ้วกดง่าย */
+  .site-header .btn { width: auto; }
+
+  .product__body { padding: var(--space-3); }
+}
+
+/* --------------------------------------------------------------------------
+   11. Accessibility
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   12. หน้า index / product
+   -------------------------------------------------------------------------- */
+.nav a[aria-current="page"] { border-bottom-color: var(--beige-dark); }
+
+/* Hero เต็มจอแรก */
+.hero--full {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
+  overflow: hidden;
+}
+.hero__hex {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(85vmin, 640px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  color: var(--line);
+  pointer-events: none;
+}
+.hero__inner { position: relative; }
+.hero__title {
+  max-width: 20em;
+  margin: 0 auto var(--space-4);
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 1.1rem + 2.4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+.hero--full .btn { width: auto; }
+
+/* การ์ดเลือกตามการใช้งาน */
+.mood-grid {
+  max-width: 820px;
+  margin-inline: auto;
+}
+.mood {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease);
+}
+.mood,
+.mood:hover { color: var(--ink); }
+.mood:hover { border-color: var(--beige-dark); }
+.mood:focus-visible { border-radius: var(--radius); }
+
+.mood__icon {
+  width: auto;
+  height: 1.75rem;
+  margin-bottom: var(--space-2);
+  color: var(--honey);              /* สีเน้นแตะเฉพาะไอคอน */
+}
+.mood__title { margin: 0; }
+.mood__tag   { margin: 0 0 var(--space-2); font-size: var(--text-sm); color: var(--beige-dark); }
+.mood__desc  { margin: 0 0 var(--space-3); font-size: 0.95rem; }
+.mood__cta {
+  margin-top: auto;
+  font-size: var(--text-sm);
+  color: var(--beige-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+/* หน้า product */
+.page-head { padding-block: var(--space-5) var(--space-4); text-align: center; }
+.page-head h1 { font-family: var(--font-heading); font-size: var(--h2); font-weight: 400; }
+.page-head p { margin-inline: auto; }
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+.filter-bar .btn {
+  width: auto;
+  min-height: 2.5rem;
+  padding: 0.4rem 1.5rem;
+  font-size: var(--text-sm);
+}
+
+.product-list {
+  max-width: 820px;
+  margin-inline: auto;
+}
+.product-list > p { grid-column: 1 / -1; text-align: center; max-width: none; }
+
+@media (max-width: 640px) {
+  .hero--full { min-height: calc(100svh - 4rem); }
+  .page-head { padding-block: var(--space-4) var(--space-3); }
+}
